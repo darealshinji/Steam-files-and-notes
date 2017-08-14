@@ -1,0 +1,44 @@
+"GameInfo"
+{
+	game	"MINERVA: Metastasis"
+	title	"MINERVA: Metastasis"
+	title2	"MINERVA: Metastasis"
+	type	singleplayer_only
+
+	developer		"Adam Foster"
+	developer_url	"http://www.hylobatidae.org/minerva/"
+	icon			"icon"
+
+	FileSystem
+	{
+		SteamAppId				380
+		ToolsAppId				211
+
+		SearchPaths
+		{
+			game+mod			metastasis
+			game				|all_source_engine_paths|ep2/ep2_pak.vpk
+			game				|all_source_engine_paths|episodic/ep1_pak.vpk
+			game				|all_source_engine_paths|hl2/hl2_sound_vo_english.vpk
+			game				|all_source_engine_paths|hl2/hl2_pak.vpk
+			game				|all_source_engine_paths|hl2/hl2_textures.vpk
+			game				|all_source_engine_paths|hl2/hl2_sound_misc.vpk
+			game				|all_source_engine_paths|hl2/hl2_misc.vpk
+			platform			|all_source_engine_paths|platform/platform_misc.vpk
+
+			mod+mod_write+default_write_path		|gameinfo_path|.
+
+			game+game_write		metastasis
+
+			gamebin				bin
+			gamebin				ep2/bin
+
+			game				|all_source_engine_paths|metastasis
+			game				|all_source_engine_paths|ep2
+			game				|all_source_engine_paths|episodic
+			game				|all_source_engine_paths|hl2
+			platform			|all_source_engine_paths|platform
+		}
+	}
+}
+

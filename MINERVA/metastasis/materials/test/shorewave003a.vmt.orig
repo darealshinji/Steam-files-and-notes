@@ -1,0 +1,23 @@
+
+"UnlitTwoTexture_DX6"
+{
+	"$basetexture" "overlays/shorewave001a"
+	"$texture2"    "test/wave3"
+	"$translucent" 1
+
+	"$alpha" 0.6
+
+//	"$additive" 1
+	"$decal" 1
+//	"$ignorez" 1
+
+	"Proxies"
+	{
+		"TextureScroll"
+		{
+			"texturescrollvar" "$texture2transform"
+			"texturescrollrate" 0.1
+			"texturescrollangle" 80
+		}
+	}
+}

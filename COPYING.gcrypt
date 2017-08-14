@@ -1,0 +1,43 @@
+    The library is distributed under the terms of the GNU Lesser
+    General Public License (LGPL); see the file COPYING.LIB for the
+    actual terms.  The helper programs (e.g. gcryptrnd and getrandom)
+    as well as the documentation are distributed under the terms of
+    the GNU General Public License (GPL); see the file COPYING for the
+    actual terms.
+
+    This library used to be available under the GPL - this was changed
+    with version 1.1.7 with the rationale that there are now many free
+    crypto libraries available and many of them come with capabilities
+    similar to Libcrypt.  We decided that to foster the use of
+    cryptography in Free Software an LGPLed library would make more
+    sense because it avoids problems due to license incompatibilities
+    between some Free Software licenses and the GPL.
+
+    Please note that in many cases it is better for a library to be
+    licensed under the GPL, so that it provides an advantage for free
+    software projects.  The Lesser GPL is so named because it does
+    less to protect the freedom of the users of the code that it
+    covers.  See http://www.gnu.org/philosophy/why-not-lgpl.html for
+    more explanation.
+
+An example of the license headers of the LGPL is
+
+-------------
+   Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2006
+                 2007, 2008, 2009, 2010, 2011  Free Software Foundation, Inc.
+
+   This file is part of Libgcrypt.
+
+   Libgcrypt is free software; you can redistribute it and/or modify
+   it under the terms of the GNU Lesser General Public License as
+   published by the Free Software Foundation; either version 2.1 of
+   the License, or (at your option) any later version.
+
+   Libgcrypt is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with this program; if not, see <http://www.gnu.org/licenses/>.
+-------------

@@ -1,0 +1,20 @@
+"Registry"
+{
+	"HKCU"
+	{
+		"Software"
+		{
+			"Valve"
+			{
+				"Steam"
+				{
+					"language"		"german"
+					"AutoLoginUser"		"djcj"
+					"RememberPassword"		"1"
+					"SourceModInstallPath"		"/home/djcj/.local/share/Steam/steamapps/sourcemods"
+					"AlreadyRetriedOfflineMode"		"0"
+				}
+			}
+		}
+	}
+}

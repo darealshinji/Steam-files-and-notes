@@ -1,0 +1,156 @@
+"GameInfo"
+{
+	game			"Black Mesa"
+	gamelogo 		1
+	developer		"Crowbar Collective"
+	developer_url	"http://www.blackmesasource.com/"
+	type			"both"
+
+	gamelogo 		1
+	SupportsDX8     0
+	SupportsXbox360 1
+	nomodels		1
+	nocrosshair		1
+	GameData 		"../bms"
+	InstancePath	"bms/mapsrc/"
+
+	hidden_maps
+	{
+		"background01" 	1
+		"background02" 	1
+		"background03" 	1
+		"background04" 	1
+		"background05" 	1
+		"background06" 	1
+		"background07" 	1
+		"background08" 	1
+		"background09" 	1
+		"background10" 	1
+		"background11" 	1
+		"background12" 	1
+		"background13" 	1
+		"background14" 	1
+
+		"bm_c0a0a" 		1
+		"bm_c0a0b" 		1
+		"bm_c0a0c" 		1
+		"bm_c1a0a" 		1
+		"bm_c1a0b" 		1
+		"bm_c1a1a" 		1
+		"bm_c1a1b" 		1
+		"bm_c1a1c" 		1
+		"bm_c1a1d" 		1
+		"bm_c1a1e" 		1
+		"bm_c1a2a" 		1
+		"bm_c1a2b" 		1
+		"bm_c1a2c" 		1
+		"bm_c1a3a" 		1
+		"bm_c1a3b" 		1
+		"bm_c1a3c" 		1
+		"bm_c1a4a" 		1
+		"bm_c1a4b" 		1
+		"bm_c1a4c" 		1
+		"bm_c1a4d" 		1
+		"bm_c1a4e" 		1
+		"bm_c2a1a" 		1
+		"bm_c2a1b" 		1
+		"bm_c2a2a" 		1
+		"bm_c2a2b" 		1
+		"bm_c2a2c" 		1
+		"bm_c2a3a" 		1
+		"bm_c2a3b" 		1
+		"bm_c2a3c" 		1
+		"bm_c2a4a" 		1
+		"bm_c2a4b" 		1
+		"bm_c2a4c" 		1
+		"bm_c2a4d" 		1
+		"bm_c2a4e" 		1
+		"bm_c2a4f" 		1
+		"bm_c2a4g" 		1
+		"bm_c2a4h" 		1
+		"bm_c2a5a" 		1
+		"bm_c2a5b" 		1
+		"bm_c2a5c" 		1
+		"bm_c2a5d" 		1
+		"bm_c2a5e" 		1
+		"bm_c2a5f" 		1
+		"bm_c2a5g" 		1
+		"bm_c2a5h" 		1
+		"bm_c2a5i" 		1
+		"bm_c3a1a" 		1
+		"bm_c3a1b" 		1
+		"bm_c3a2a" 		1
+		"bm_c3a2b" 		1
+		"bm_c3a2c" 		1
+		"bm_c3a2d" 		1
+		"bm_c3a2e" 		1
+		"bm_c3a2f" 		1
+		"bm_c3a2g" 		1
+		"bm_c3a2h" 		1
+
+		"credits" 		1
+	}
+
+	FileSystem
+	{
+		SteamAppId 362890
+		ToolsAppId 211
+
+		//
+		// Search paths are relative to the base directory, which is where hl2.exe is found.
+		//
+		// |gameinfo_path| points at the directory where gameinfo.txt is.
+		// We always want to mount that directory relative to gameinfo.txt, so
+		// people can mount stuff in c:\mymod, and the main game resources are in
+		// someplace like c:\program files\valve\steam\steamapps\half-life 2.
+		//
+		SearchPaths
+		{
+			// We search VPK files before ordinary folders, because most files will be found in
+			// VPK and we can avoid making thousands of file system calls to attempt to open files
+			// in folders where they don't exist.  (Searching a VPK is much faster than making an operating
+			// system call.)
+
+			game+mod bms/custom/*
+
+			// Black Mesa VPK files.
+			game+mod bms/bms_textures.vpk
+			game+mod bms/bms_materials.vpk
+			game+mod bms/bms_models.vpk
+			game+mod bms/bms_misc.vpk
+			game+mod bms/bms_sounds_misc.vpk
+			game+mod bms/bms_sound_vo_english.vpk
+			game+mod bms/bms_maps.vpk
+
+			// HL2 VPK files.
+			game      |all_source_engine_paths|hl2/hl2_misc.vpk
+			game      |all_source_engine_paths|hl2/hl2_sounds_misc.vpk
+			game      |all_source_engine_paths|hl2/hl2_textures.vpk
+			game      |all_source_engine_paths|hl2/hl2_materials.vpk
+			game      |all_source_engine_paths|hl2/hl2_models.vpk
+
+			// Platform VPK files.
+			platform  |all_source_engine_paths|platform/platform_misc.vpk
+
+			// Now search loose files.  We'll set the directory containing the gameinfo.txt file
+			// as the first "mod" search path (after any user customizations).  This is also the one
+			// that's used when writing to the "mod" path.
+			mod+mod_write+default_write_path		|gameinfo_path|.
+
+			// Add the BMS directory as a game search path.  This is also where where writes
+			// to the "game" path go.
+			game+game_write   bms
+
+			// Where the game's binaries are.
+			gamebin	    |gameinfo_path|bin
+
+			// Add the HL2 directory as a game search path.  This is also where where writes
+			// to the "game" path go.
+			//game	    hl2
+
+			// Last, mount in shared HL2 loose files
+			game		    |all_source_engine_paths|hl2
+			platform	    |all_source_engine_paths|platform
+		}
+	}
+}
