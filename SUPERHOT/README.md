@@ -8,6 +8,8 @@ Enable video recording on Linux in two steps:
 
 2. Replace `SH_Data/Managed/Assembly-CSharp.dll` and `SH_Data/Managed/Assembly-CSharp-firstpass.dll` with their counterparts from the Windows build
 
+The videos will be saved in `$HOME/.config/unity3d/SUPERHOT_Team/SUPERHOT/Screenshots/Replays`
+
 Launcher
 --------
 A launcher application like the one used on Windows can be found here: https://github.com/darealshinji/superhot-linux-launcher
