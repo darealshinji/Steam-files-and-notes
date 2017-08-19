@@ -5,3 +5,6 @@ This way there should be no runtime issues resulting in the music not being play
 but leaving it doesn't seem to have any negative effects.
 
 Topic related to this issue: https://forums.blackmesasource.com/index.php/Thread/30793-Background-music-not-playing-figured-out-the-issue/
+
+`vaudio_speex.so` seems to be required on Linux. It's part of the _Source SDK Base 2013 Singleplayer_ and adding it makes annoying error messages in the console disappear.
+
