@@ -23,6 +23,7 @@ gen_fodt issue_1/RU issue-1-ru.fodt
 gen_fodt issue_2/EN issue-2-en.fodt
 gen_fodt issue_2/RU issue-2-ru.fodt
 gen_fodt issue_3/EN issue-3-en.fodt
+gen_fodt issue_3/RU issue-3-ru.fodt
 gen_fodt issue_charnel/EN issue-charnel-en.fodt
 gen_fodt issue_charnel/RU issue-charnel-ru.fodt
 
