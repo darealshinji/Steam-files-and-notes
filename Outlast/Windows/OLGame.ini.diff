@@ -1,0 +1,13 @@
+--- OLGame.ini.bak
++++ OLGame.ini
+@@ -234,8 +234,8 @@
+ LandingPenaltyDuration=1.0
+ LandingSpeedModifier=0.25
+ ElectrifiedJumpDelay=0.25
+-DefaultFOV=90.0
+-RunningFOV=100.0
++DefaultFOV=100.0
++RunningFOV=110.0
+ FOVApproachCoeffOpening=0.97
+ FOVApproachCoeffClosing=0.97
+ FOVApproachCoeffRun=0.4

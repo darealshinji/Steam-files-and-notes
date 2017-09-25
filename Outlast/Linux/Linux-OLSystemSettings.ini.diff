@@ -1,0 +1,47 @@
+--- Linux-OLSystemSettings.ini.bak
++++ Linux-OLSystemSettings.ini
+@@ -1,30 +1,30 @@
+ [SystemSettings]
+-StaticDecals=True
+-DynamicDecals=True
+-UnbatchedDecals=True
++StaticDecals=False
++DynamicDecals=False
++UnbatchedDecals=False
+ DecalCullDistanceScale=1.0
+ DynamicLights=True
+-DynamicShadows=True
+-LightEnvironmentShadows=True
+-CompositeDynamicLights=True
+-SHSecondaryLighting=True
++DynamicShadows=False
++LightEnvironmentShadows=False
++CompositeDynamicLights=False
++SHSecondaryLighting=False
+ DirectionalLightmaps=True
+ MotionBlur=True
+ MotionBlurPause=True
+ MotionBlurSkinning=1
+ DepthOfField=True
+ AmbientOcclusion=True
+-Bloom=True
+-bAllowLightShafts=True
+-Distortion=True
++Bloom=False
++bAllowLightShafts=False
++Distortion=False
+ FilteredDistortion=True
+ DropParticleDistortion=False
+ bAllowDownsampledTranslucency=False
+-SpeedTreeLeaves=True
+-SpeedTreeFronds=True
++SpeedTreeLeaves=False
++SpeedTreeFronds=False
+ OnlyStreamInTextures=False
+-LensFlares=True
+-FogVolumes=True
++LensFlares=False
++FogVolumes=False
+ FloatingPointRenderTargets=True
+ OneFrameThreadLag=True
+ UseVsync=True
