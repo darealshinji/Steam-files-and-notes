@@ -1,0 +1,28 @@
+<unity_prefs version_major="1" version_minor="1">
+	<pref name="COMPLETED_GAME" type="int">1</pref>
+	<pref name="FLASHLIGHT" type="int">1</pref>
+	<pref name="PHONE" type="int">1</pref>
+	<pref name="WAYDRIVE_UNLOCKED" type="int">1</pref>
+	<pref name="Bandana" type="int">1</pref>
+	<pref name="Broken Crayon" type="int">1</pref>
+	<pref name="Car Keys" type="int">1</pref>
+	<pref name="Chewed Dog Food" type="int">1</pref>
+	<pref name="Christmas Light" type="int">1</pref>
+	<pref name="Cupcake Wrapper" type="int">1</pref>
+	<pref name="Dead Beetle" type="int">1</pref>
+	<pref name="Doll Hair" type="int">1</pref>
+	<pref name="Dust Bunny" type="int">1</pref>
+	<pref name="Fingernail Clippings" type="int">1</pref>
+	<pref name="French Fry" type="int">1</pref>
+	<pref name="Hairball" type="int">1</pref>
+	<pref name="Ketchup" type="int">1</pref>
+	<pref name="Loose Change" type="int">1</pref>
+	<pref name="Lost Earring" type="int">1</pref>
+	<pref name="Missing Sock" type="int">1</pref>
+	<pref name="Old Napkin" type="int">1</pref>
+	<pref name="Peanut Shells" type="int">1</pref>
+	<pref name="Pencil Shavings" type="int">1</pref>
+	<pref name="Rabbit's Foot" type="int">1</pref>
+	<pref name="Seashell Soap" type="int">1</pref>
+	<pref name="Used Bandage" type="int">1</pref>
+</unity_prefs>
