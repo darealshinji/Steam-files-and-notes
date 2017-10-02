@@ -37,5 +37,5 @@ Windows
 tattletail.reg
 --------------
 Windows registry file to unlock all eggs, level selection and other things.
-Values where taken from [reddit](https://www.reddit.com/r/Tattletail/comments/5sbk9o/recently_made_a_discovery_on_the_save_game/).
+Values were taken from [reddit](https://www.reddit.com/r/Tattletail/comments/5sbk9o/recently_made_a_discovery_on_the_save_game/).
 
