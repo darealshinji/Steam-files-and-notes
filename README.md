@@ -6,6 +6,8 @@ You can download the Windows version of a game on Linux using steamcmd (install 
 ``` sh
 steamcmd +login USERNAME PASSWORD +@sSteamCmdForcePlatformType windows +force_install_dir DESTINATION +app_license_request APPID +app_update APPID validate +quit
 ```
+You can omit the `+app_license_request APPID` for a game that you already own.
+Use `+@sSteamCmdForcePlatformType macos` to download the macOS version of a game.
 
  * USERNAME PASSWORD: your username and password
  * DESTINATION: full destination path without spaces in names, i.e. `$HOME/Half-Life_2_(Windows)`
