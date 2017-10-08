@@ -7,10 +7,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void printError(char *msg)
-{
-  fprintf(stderr, "error: %s\n", msg);
-}
+#define PRINT_ERROR(msg) fprintf(stderr, "error: %s\n", msg)
 
 int main(int argc, char **argv)
 {
@@ -25,7 +22,7 @@ int main(int argc, char **argv)
 
   if (ssize < 1)
   {
-    printError("readlink()");
+    PRINT_ERROR("readlink()");
     return 1;
   }
 
@@ -33,7 +30,7 @@ int main(int argc, char **argv)
 
   if (chdir(dirname(buf)) != 0)
   {
-    printError("chdir()");
+    PRINT_ERROR("chdir()");
     return 1;
   }
 
@@ -41,7 +38,7 @@ int main(int argc, char **argv)
 
   if (!handle)
   {
-    printError(dlerror());
+    PRINT_ERROR(dlerror());
     return 1;
   }
 
@@ -51,7 +48,7 @@ int main(int argc, char **argv)
 
   if (error)
   {
-    printError(error);
+    PRINT_ERROR(error);
     dlclose(handle);
     return 1;
   }
@@ -61,7 +58,7 @@ int main(int argc, char **argv)
 
   if (rv_dlclose != 0)
   {
-    printError(dlerror());
+    PRINT_ERROR(dlerror());
     rv = rv_dlclose;
   }
 
