@@ -18,7 +18,6 @@ Move to the new directory and create a Linux version from the game files:
 cd $HOME/Tattletail-tmp
 wget https://github.com/darealshinji/UnityEngine2deb/archive/master.tar.gz -O- | tar xfz -
 ./UnityEngine2deb-master/copyunityengine -y tattletailMac.app
-cp -vf tattletailMac.app/Contents/Resources/ScreenSelector.png Tattletail-Linux/Tattletail_Data
 cd -
 cp -vf UnityPlayer.png $HOME/Tattletail-tmp/Tattletail-Linux/Tattletail_Data/Resources
 ```
