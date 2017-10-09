@@ -1,5 +1,10 @@
 AppID: `322500`
 
+Configure resolution/fullscreen
+-------------------------------
+Change resolution or fullscreen in `~/.config/unity3d/SUPERHOT_Team/SUPERHOT/prefs`
+or use the launch options `-screen-width 1920 -screen-height 1080 -screen-fullscreen 1`
+
 Replay recording
 ----------------
 Enable video recording on Linux in two steps:
