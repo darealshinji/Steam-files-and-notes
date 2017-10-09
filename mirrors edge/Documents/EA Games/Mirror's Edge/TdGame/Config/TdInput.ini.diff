@@ -1,0 +1,21 @@
+Set FOV on the fly with numpad keys.
+
+--- a/TdInput.ini
++++ b/TdInput.ini
+@@ -105,6 +105,16 @@
+ OverrideBindings=(Key="FRA",Binding=(Name="A",Command="GBA_LookBehind",Control=False,Shift=False,Alt=False))
+ bInvertMouse=False
+ bInvertTurn=False
++Bindings=(Name="NumPadZero",Command="FOV 0",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadOne",Command="FOV 32",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadTwo",Command="FOV 75",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadThree",Command="FOV 80",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadFour",Command="FOV 85",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadFive",Command="FOV 90",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadSix",Command="FOV 95",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadSeven",Command="FOV 100",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadEight",Command="FOV 105",Control=False,Shift=False,Alt=False)
++Bindings=(Name="NumPadNine",Command="FOV 110",Control=False,Shift=False,Alt=False)
+ 
+ [Engine.DebugCameraInput]
+ Bindings=(Name="MoveUp",Command="Axis aUp Speed=1.0")

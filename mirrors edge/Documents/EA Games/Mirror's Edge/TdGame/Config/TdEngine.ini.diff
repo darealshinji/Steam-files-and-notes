@@ -1,0 +1,13 @@
+Cap framerate at 120 fps instead of 62.
+
+--- a/TdEngine.ini
++++ b/TdEngine.ini
+@@ -137,7 +137,7 @@
+ [Engine.GameEngine]
+ bSmoothFrameRate=TRUE
+ MinSmoothedFrameRate=22
+-MaxSmoothedFrameRate=62
++MaxSmoothedFrameRate=120
+ 
+ [Engine.DemoRecDriver]
+ AllowDownloads=True
