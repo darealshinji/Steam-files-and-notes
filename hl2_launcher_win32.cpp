@@ -14,6 +14,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
   std::string dirname, path, dll;
   HINSTANCE hinstLauncher;
   LauncherMain_t pLauncherMain;
+  int resultLauncherMain;
 
   ShowWindow(GetConsoleWindow(), SW_HIDE);
 
@@ -58,6 +59,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
   }
 
   pLauncherMain = (LauncherMain_t) GetProcAddress(hinstLauncher, "LauncherMain");
-  return pLauncherMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+  resultLauncherMain = pLauncherMain(hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+
+  FreeLibrary(hinstLauncher);
+  return resultLauncherMain;
 }
 
