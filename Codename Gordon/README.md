@@ -12,3 +12,4 @@ buttons for security reasons and because NV's website is offline, and the fullsc
 
 The game will be playable on Windows, Linux and macOS.
 
+Can also be downloaded from [here](http://www.moddb.com/games/half-life/downloads/codename-gordon-mod).
