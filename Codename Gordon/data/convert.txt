@@ -1,0 +1,17 @@
+https://www.free-decompiler.com/flash/download/ffdec_10.0.0.zip
+https://www.adobe.com/support/flashplayer/debug_downloads.html
+https://frippery.org/files/busybox/busybox.exe
+
+Windows:
+ffdec -cli -extract cg.exe -o cg.swf biggest
+ffdec -cli -swf2xml cg.swf cg.xml
+busybox patch -p2 cg.xml swf.xml.diff
+ffdec -cli -xml2swf cg.xml cg.swf
+
+Unix:
+java -jar ffdec.jar -cli -extract cg.exe -o cg.swf biggest
+java -jar ffdec.jar -cli -swf2xml cg.swf cg.xml
+dos2unix cg.xml swf.xml.diff
+patch -p2 cg.xml swf.xml.diff
+java -jar ffdec.jar -cli -xml2swf cg.xml cg.swf
+

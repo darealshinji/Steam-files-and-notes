@@ -5,13 +5,10 @@ Codename Gordon can still be installed for free using the Steam URL `steam://ins
 Linux
 -----
 
-The embedded SWF file can be extracted with `cat cg.exe | tail -c+1198770 > cg.swf`.
-MD5 checksum of cg.swf is `f3930ac0e48d5ad38e612f5acff04f3f`.
+Use `patch_cg.sh` do download and patch Codename Gordon.
 
-You can get a stand-alone Flash player (Flash Player Projector) directly from [Adobe](http://www.adobe.com/support/flashplayer/debug_downloads.html).
+The patches will remove the Highscore button, since that isn't working properly, deactivate the Valve and Nuclear Vision
+buttons for security reasons and because NV's website is offline, and the fullscreen mode will be activated by default.
 
-Replace `cg_languages.xml` to enable dialogs.
-Dialog language must be changed in the game's graphics menu.
-
-![Codename Gordon on Linux](screenshot.jpg)
+The game will be playable on Windows, Linux and macOS.
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<swf compression="ZLIB" frameCount="1" frameRate="12.0" gfx="false" hasEndTag="true" type="SWF" version="7">
+  <!--WARNING: The structure of this XML is not final. In later versions of FFDec it can be changed.-->
+  <!--JPEXS Free Flash Decompiler v.10.0.0-->
+  <displayRect Xmax="2000" Xmin="0" Ymax="500" Ymin="0" nbits="12" type="RECT"/>
+  <tags>
+    <item type="SetBackgroundColorTag">
+      <backgroundColor blue="255" green="255" red="255" type="RGB"/>
+    </item>
+    <item fontAscent="0" fontDescent="0" fontFlagsANSI="false" fontFlagsBold="false" fontFlagsHasLayout="false" fontFlagsItalic="false" fontFlagsShiftJIS="false" fontFlagsSmallText="false" fontFlagsWideCodes="true" fontFlagsWideOffsets="false" fontID="1" fontLeading="0" fontName="Verdana" type="DefineFont2Tag">
+      <languageCode languageCode="1" type="LANGCODE"/>
+      <glyphShapeTable/>
+      <codeTable/>
+    </item>
+    <item align="1" autoSize="false" border="false" characterID="2" fontHeight="200" fontId="1" hasFont="true" hasFontClass="false" hasLayout="true" hasMaxLength="false" hasText="true" hasTextColor="true" html="true" indent="0" initialText="&lt;p align=&quot;right&quot;&gt;&lt;font face=&quot;Verdana&quot; size=&quot;10&quot; color=&quot;#000000&quot;&gt;V.1.0.0.4-MOD&lt;/font&gt;&lt;/p&gt;" leading="40" leftMargin="0" maxLength="0" multiline="true" noSelect="true" password="false" readOnly="true" rightMargin="0" type="DefineEditTextTag" useOutlines="false" variableName="" wasStatic="false" wordWrap="false">
+      <bounds Xmax="1691" Xmin="-256" Ymax="321" Ymin="-40" nbits="0" type="RECT"/>
+      <textColor alpha="255" blue="0" green="0" red="0" type="RGBA"/>
+    </item>
+    <item characterId="2" clipDepth="0" depth="1" placeFlagHasCharacter="true" placeFlagHasClipActions="false" placeFlagHasClipDepth="false" placeFlagHasColorTransform="false" placeFlagHasMatrix="true" placeFlagHasName="false" placeFlagHasRatio="false" placeFlagMove="false" ratio="0" type="PlaceObject2Tag">
+      <matrix hasRotate="false" hasScale="false" nRotateBits="0" nScaleBits="0" nTranslateBits="10" rotateSkew0="0" rotateSkew1="0" scaleX="0" scaleY="0" translateX="309" translateY="154" type="MATRIX"/>
+    </item>
+    <item align="1" autoSize="false" border="false" characterID="3" fontHeight="200" fontId="1" hasFont="true" hasFontClass="false" hasLayout="true" hasMaxLength="false" hasText="true" hasTextColor="true" html="true" indent="0" initialText="&lt;p align=&quot;right&quot;&gt;&lt;font face=&quot;Verdana&quot; size=&quot;10&quot; color=&quot;#ffffff&quot;&gt;V.1.0.0.4-MOD&lt;/font&gt;&lt;/p&gt;" leading="40" leftMargin="0" maxLength="0" multiline="true" noSelect="true" password="false" readOnly="true" rightMargin="0" type="DefineEditTextTag" useOutlines="false" variableName="" wasStatic="false" wordWrap="false">
+      <bounds Xmax="1691" Xmin="-256" Ymax="321" Ymin="-40" nbits="0" type="RECT"/>
+      <textColor alpha="255" blue="255" green="255" red="255" type="RGBA"/>
+    </item>
+    <item characterId="3" clipDepth="0" depth="2" placeFlagHasCharacter="true" placeFlagHasClipActions="false" placeFlagHasClipDepth="false" placeFlagHasColorTransform="false" placeFlagHasMatrix="true" placeFlagHasName="false" placeFlagHasRatio="false" placeFlagMove="false" ratio="0" type="PlaceObject2Tag">
+      <matrix hasRotate="false" hasScale="false" nRotateBits="0" nScaleBits="0" nTranslateBits="10" rotateSkew0="0" rotateSkew1="0" scaleX="0" scaleY="0" translateX="289" translateY="134" type="MATRIX"/>
+    </item>
+    <item type="ShowFrameTag"/>
+  </tags>
+</swf>
