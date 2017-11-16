@@ -26,8 +26,6 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  buf[PATH_MAX] = '\0';
-
   if (chdir(dirname(buf)) != 0)
   {
     PRINT_ERROR("chdir()");
