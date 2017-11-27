@@ -14,34 +14,57 @@ immediately return "false":
       xor     al, al      ; 32 C0
       pop     ebp         ; 5D
       ret                 ; C3
-
-Note: there's no real file integrity check included.
-Only the filesize and the 4 bytes at the offset are checked.
-
-MD5 checksums before and after the patching are:
-before -> 69bee18efe39e0bd24b8ac979b560f39
-after  -> c6b2cbe8bb59c38d5f54077de86a66ba
-
 ***/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define BUFSIZE 4
+#define BUFSIZE        4
+#define FILESIZE       145600
+#define BYTES_OFFSET   0x03533
+#define CRC_UNPATCHED  "9FC8E082"
+#define CRC_PATCHED    "FC036437"
+#define NEW_BYTES      '\x32','\xC0','\x5D','\xC3'
+
+// https://github.com/nothings/stb
+ 
+typedef unsigned int stb_uint;
+
+stb_uint stb_crc32_block(stb_uint crc, unsigned char *buffer, stb_uint len)
+{
+   static stb_uint crc_table[256];
+   stb_uint i,j,s;
+   crc = ~crc;
+
+   if (crc_table[1] == 0)
+      for(i=0; i < 256; i++) {
+         for (s=i, j=0; j < 8; ++j)
+            s = (s >> 1) ^ (s & 1 ? 0xedb88320 : 0);
+         crc_table[i] = s;
+      }
+   for (i=0; i < len; ++i)
+      crc = (crc >> 8) ^ crc_table[buffer[i] ^ (crc & 0xff)];
+   return ~crc;
+}
+
+stb_uint stb_crc32(unsigned char *buffer, stb_uint len)
+{
+   return stb_crc32_block(0, buffer, len);
+}
 
 int main(void)
 {
-  const long size = 145600L;
-  const long offset = 0x03533;
-  const unsigned char old[BUFSIZE] = { '\x83', '\xEC', '\x14', '\x68' };
-  const unsigned char new[BUFSIZE] = { '\x32', '\xC0', '\x5D', '\xC3' };
+  const long size = FILESIZE;
+  const unsigned char new_bytes[BUFSIZE] = { NEW_BYTES };
   const char *file1 = "bin/steam_api.dll";
   const char *file2 = "steam_api.dll";
 
   FILE *fp;
   const char *file = file1;
   unsigned char buf[BUFSIZE];
+  unsigned char filebuf[FILESIZE];
+  char crc[9] = {0};
   int rv = 1;
 
 
@@ -61,6 +84,7 @@ int main(void)
     goto exit;
   }
 
+
   /* check filesize */
 
   if (fseek(fp, 0, SEEK_END) == -1)
@@ -78,35 +102,49 @@ int main(void)
   rewind(fp);
 
 
-  /* go to offset and read bytes */
+  /* check CRC and patch file */
 
-  if (fseek(fp, offset, SEEK_SET) == -1)
-  {
-    printf("error: cannot parse %s\n", file);
-    goto close;
-  }
-
-  if (fread(buf, 1, BUFSIZE, fp) != BUFSIZE)
+  if (fread(filebuf, 1, FILESIZE, fp) != FILESIZE)
   {
     printf("error: fread()\n");
     goto close;
   }
 
+  snprintf(crc, 9, "%.8X", stb_crc32(filebuf, FILESIZE));
 
-  /* compare bytes and patch if necessary */
-
-  if (memcmp(old, buf, BUFSIZE) == 0)
+  if (strcmp(crc, CRC_PATCHED) == 0)
   {
-    /* go back to offset */
+    printf("%s already patched\n", file);
+    rv = 0;
+    goto close;
+  }
+  else if (strcmp(crc, CRC_UNPATCHED) == 0)
+  {
+    /* go to offset and read bytes */
+
+    if (fseek(fp, BYTES_OFFSET, SEEK_SET) == -1)
+    {
+      printf("error: cannot parse %s\n", file);
+      goto close;
+    }
+
+    if (fread(buf, 1, BUFSIZE, fp) != BUFSIZE)
+    {
+      printf("error: fread()\n");
+      goto close;
+    }
+
     if (fseek(fp, -BUFSIZE, SEEK_CUR) == -1)
     {
       printf("error: fseek()\n");
       goto close;
     }
 
-    if (fwrite(new, 1, BUFSIZE, fp) == BUFSIZE)
+    /* patch file */
+
+    if (fwrite(new_bytes, 1, BUFSIZE, fp) == BUFSIZE)
     {
-      printf("%s patched\n", file);
+      printf("%s now patched\n", file);
       rv = 0;
     }
     else
@@ -114,14 +152,10 @@ int main(void)
       printf("error: could not patch %s\n", file);
     }
   }
-  else if (memcmp(new, buf, BUFSIZE) == 0)
-  {
-    printf("%s already patched\n", file);
-    rv = 0;
-  }
   else
   {
-    printf("error: wrong file\n");
+    printf("error: wrong file (CRC mismatch)\n");
+    goto close;
   }
 
 
