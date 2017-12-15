@@ -23,6 +23,9 @@ cp -v $name/*/Variations/linux64_withgfx_nondevelopment_mono/LinuxPlayer SHMCD.x
 chmod a+x SHMCD.x86_64
 rm -rf $name ${name}.exe
 
+# this is needed or else the game might crash occassionally
+touch SHMCD_Data/data.unity3d
+
 # if you want a picture for the screen selector window
 wget http://cdn.edgecast.steamstatic.com/steam/apps/690040/header.jpg
 convert header.jpg SHMCD_Data/ScreenSelector.png
