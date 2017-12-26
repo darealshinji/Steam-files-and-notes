@@ -1,4 +1,5 @@
 Cap framerate at 120 fps instead of 62.
+Skip startup movie.
 
 --- a/TdEngine.ini
 +++ b/TdEngine.ini
@@ -11,3 +12,12 @@ Cap framerate at 120 fps instead of 62.
  
  [Engine.DemoRecDriver]
  AllowDownloads=True
+@@ -944,7 +944,7 @@
+ LoadMapLoadTime=29.0f
+
+ [FullScreenMovie]
+-StartupMovies=StartupMovie
++;StartupMovies=StartupMovie
+ SkippableMovies=Attract_Movie
+ SkippableMovies=scene_01
+ SkippableMovies=scene_02

@@ -1,9 +1,5 @@
 AppID: `17410`
 
-Disable intro movie
--------------------
-Simply remove `TdGame/Movies/StartupMovie.bik` from the game directory.
-
 Disable NVidia PhysX installation
 ---------------------------------
 Copy `17410_install.vdf` into the game directory or remove the following lines from the original file:
