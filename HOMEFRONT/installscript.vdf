@@ -1,0 +1,13 @@
+"InstallScript"
+{
+    "Registry"
+    {
+        "HKEY_CURRENT_USER\\Software\\Valve\\Steam\\Apps\\55100"
+        {
+            "dword"
+            {
+                "PatchVersion"      "20101201"
+            }		
+        }
+    }
+}

@@ -1,0 +1,58 @@
+Cap framerate at 120 fps instead of 62.
+Disable framerate smoothing.
+Disable startup movies.
+
+--- a/GCEngine.ini
++++ b/GCEngine.ini
+@@ -275,7 +275,7 @@
+ [Engine.GameEngine]
+ bSmoothFrameRate=TRUE
+ MinSmoothedFrameRate=22
+-MaxSmoothedFrameRate=62
++MaxSmoothedFrameRate=120
+ MaxDeltaTime=0
+ PendingLevelPlayerControllerClassName=GCGame.FL2PlayerController
+ ;bClearAnimSetLinkupCachesOnLoadMap=TRUE
+@@ -934,8 +934,8 @@
+ FogVolumes=True
+ FloatingPointRenderTargets=True
+ OneFrameThreadLag=True
+-UseVsync=True
+-UseFPSSmoothing=True
++UseVsync=False
++UseFPSSmoothing=False
+ UpscaleScreenPercentage=True
+ Fullscreen=1
+ AllowD3D10=True
+@@ -1323,12 +1323,12 @@
+ 
+ [FullScreenMovie]
+ bShouldStopMovieAtEndOfLoadMap=FALSE
+-StartupMovies=LegalScreen_PC
+-StartupMovies=THQ
+-StartupMovies=ThreeLogos
+-StartupMovies=DE_Logo
+-StartupMovies=NVidia
+-StartupMovies=HomeIsLogo
++;StartupMovies=LegalScreen_PC
++;StartupMovies=THQ
++;StartupMovies=ThreeLogos
++;StartupMovies=DE_Logo
++;StartupMovies=NVidia
++;StartupMovies=HomeIsLogo
+ SkippableMovies=THQ
+ SkippableMovies=DE_Logo
+ SkippableMovies=ThreeLogos
+@@ -1566,10 +1566,10 @@
+ StartupLevelName=HFstreamMainMenu
+ DefaultGamma=0.500000
+ PendingLevelPlayerControllerClassName=GCGame.FL2PlayerController
+-MaxSmoothedFrameRate=62.000000
++MaxSmoothedFrameRate=120.000000
+ MinSmoothedFrameRate=22.000000
+ MaxDeltaTime=0.000000
+-bSmoothFrameRate=True
++bSmoothFrameRate=False
+ bClearAnimSetLinkupCachesOnLoadMap=False
+ LocalPlayerClassName=Engine.LocalPlayer
+ DefaultPostProcessName=GCGameMaterials.GCBasePostProcess

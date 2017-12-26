@@ -1,0 +1,14 @@
+Disable mouse smoothing.
+
+--- a/GCInput.ini
++++ b/GCInput.ini
+@@ -5,8 +5,7 @@
+ LookUpScale=-16650
+ MouseSensitivity=45.000000
+ DoubleClickTime=0.250000
+-bEnableMouseSmoothing=false
+-bViewAccelerationEnabled=false
++bEnableMouseSmoothing=true
+ ZoomReleaseTime=0.250000
+ BindingsFoot=(Name="five",CommandIndex=EKBC_SpecialWeapon2)
+ BindingsFoot=(Name="four",CommandIndex=EKBC_SpecialWeapon1)
