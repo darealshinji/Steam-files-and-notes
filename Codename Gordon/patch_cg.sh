@@ -48,18 +48,20 @@ for lang in English French German Italian Japanese Korean SChinese Spanish TChin
   mv dialogs_${lang,,}.xml dialogs_${lang}.xml
 done
 
-url="https://fpdownload.macromedia.com/pub/flashplayer/updaters/27"
-wget -c "$url/flash_player_sa_linux.x86_64.tar.gz"
-wget -c "$url/flashplayer_27_sa.exe"
-wget -c "$url/flashplayer_27_sa.dmg"
+flashver=28
 
-mv flashplayer_27_sa.exe flashplayer.exe
+url="https://fpdownload.macromedia.com/pub/flashplayer/updaters/$flashver"
+wget -c "$url/flash_player_sa_linux.x86_64.tar.gz"
+wget -c "$url/flashplayer_${flashver}_sa.exe"
+wget -c "$url/flashplayer_${flashver}_sa.dmg"
+
+mv flashplayer_${flashver}_sa.exe flashplayer.exe
 tar xf flash_player_sa_linux.x86_64.tar.gz
 mv flashplayer flashplayer_linux
-dmg2img -i flashplayer_27_sa.dmg -o flashplayer.img
+dmg2img -i flashplayer_${flashver}_sa.dmg -o flashplayer.img
 7z x flashplayer.img
 mv "Flash Player/Flash Player.app/Contents/MacOS/Flash Player" flashplayer_mac
-rm -rf flash_player_sa_linux.x86_64.tar.gz flashplayer_27_sa.dmg flashplayer.img "Flash Player"
+rm -rf flash_player_sa_linux.x86_64.tar.gz flashplayer_${flashver}_sa.dmg flashplayer.img "Flash Player"
 
 chmod a+x flashplayer_linux flashplayer_mac ../cg.sh
 
