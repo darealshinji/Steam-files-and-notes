@@ -55,7 +55,7 @@ int main(int argc, char **argv)
     printf("renaming `%s' to `%s'\n", lib, dest);
     if (rename(lib, dest) == -1) {
       int errsv = errno;
-      fprintf(stderr, "error: moving `%s' failed: %s\n", strerror(errsv), dest);
+      fprintf(stderr, "error: moving `%s' failed: %s\n", lib, strerror(errsv));
       //return 1;
     }
   }
