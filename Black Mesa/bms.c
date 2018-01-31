@@ -18,45 +18,46 @@ typedef char bool;
 
 int main(int argc, char **argv)
 {
-  char self[PATH_MAX] = {0};
-  char *argv_copy[argc];
-  void *handle;
-  char *error;
+  char *argv_copy[argc], *self, *copy, *dir, *error;
+  const char *lib, *dest;
+  void *handle = NULL;
+  int rv = 1;
+
   bool (*pSteamAPI_IsSteamRunning) (void);
   int (*pLauncherMain) (int, char**);
 
 
   /* change the current working directory to the exe's path */
 
-  ssize_t ssize = readlink("/proc/self/exe", self, PATH_MAX);
+  self = realpath("/proc/self/exe", NULL);
 
-  if (ssize < 1) {
-    fprintf(stderr, "error: readlink() failed; unable to resolve /proc/self/exe\n");
+  if (!self) {
+    fprintf(stderr, "error: realpath() failed; unable to resolve /proc/self/exe\n");
     return 1;
   }
 
-  char *copy = strdup(self);
-  char *dir = dirname(copy);
+  copy = strdup(self);
+  dir = dirname(copy);
 
   if (chdir(dir) != 0) {
     fprintf(stderr, "error: chdir() failed; unable to move into the directory `%s'\n", dir);
     free(copy);
-    return 1;
+    goto close;
   }
   free(copy);
 
 
   /* rename bin/libstdc++.so.6 to only use the system C++ library */
 
-  const char *lib = "bin/libstdc++.so.6";
-  const char *dest = "bin/libstdc++.so.6.old";
+  lib = "bin/libstdc++.so.6";
+  dest = "bin/libstdc++.so.6.old";
 
   if (access(lib, F_OK) == 0) {
     printf("renaming `%s' to `%s'\n", lib, dest);
     if (rename(lib, dest) == -1) {
       int errsv = errno;
       fprintf(stderr, "error: moving `%s' failed: %s\n", lib, strerror(errsv));
-      //return 1;
+      //goto close;
     }
   }
 
@@ -68,7 +69,7 @@ int main(int argc, char **argv)
 
   if (!handle) {
     fprintf(stderr, "error: %s\n", dlerror());
-    return 1;
+    goto close;
   }
 
   dlerror();
@@ -77,14 +78,12 @@ int main(int argc, char **argv)
 
   if (error) {
     fprintf(stderr, "error: %s\n", error);
-    dlclose(handle);
-    return 1;
+    goto close;
   }
 
   if (pSteamAPI_IsSteamRunning() == false) {
     fprintf(stderr, "error: SteamAPI_IsSteamRunning() failed; unable to locate a running instance of Steam\n");
-    dlclose(handle);
-    return 1;
+    goto close;
   }
 
   dlclose(handle);
@@ -96,7 +95,7 @@ int main(int argc, char **argv)
 
   if (!handle) {
     fprintf(stderr, "error: %s\n", dlerror());
-    return 1;
+    goto close;
   }
 
   dlerror();
@@ -105,29 +104,30 @@ int main(int argc, char **argv)
 
   if (error) {
     fprintf(stderr, "error: %s\n", error);
-    dlclose(handle);
-    return 1;
+    goto close;
   }
+  printf("launcher.so successfully loaded\n");
 
 
   /* launch game with argv[0] set to the resolved exe path;
    * otherwise the game's resources won't be loaded correctly
    * when starting the game from another path */
 
-  argv_copy[0] = strdup(self);
-
   for (int i = 1; i < argc; i++) {
-    argv_copy[i] = strdup(argv[i]);
+    argv_copy[i] = argv[i];
   }
+  argv_copy[0] = self;
   argv_copy[argc] = '\0';
 
-  int rv = pLauncherMain(argc, argv_copy);
-  dlclose(handle);
+  rv = pLauncherMain(argc, argv_copy);
 
-  for (int i = 0; i < argc; i++) {
-    free(argv_copy[i]);
+close:
+  if (handle) {
+    dlclose(handle);
   }
-
+  if (self) {
+    free(self);
+  }
   return rv;
 }
 
