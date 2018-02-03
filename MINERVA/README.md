@@ -18,7 +18,7 @@ cp ../libgcrypt.so.11 $HOME/MINERVA/bin
 cd $HOME/MINERVA
 mv MINERVA/metastasis .
 mv sourcetest/bin ep2
-rm -rf MINERVA sdktools sourcetest steamapps
+rm -rf MINERVA sdktools sourcetest steamapps metastasis/DownloadLists metastasis/materialsrc
 ```
 Start the game with `./hl2.sh -game metastasis`
 
