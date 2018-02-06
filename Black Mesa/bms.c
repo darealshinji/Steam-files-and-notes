@@ -3,6 +3,7 @@
 
 #include <dlfcn.h>
 #include <errno.h>
+#include <inttypes.h>
 #include <libgen.h>
 #include <limits.h>
 #include <stdio.h>
@@ -10,29 +11,57 @@
 #include <string.h>
 #include <unistd.h>
 
-#ifndef __cplusplus
-typedef char bool;
-#define false 0
-#define true  1
-#endif
+#define STRINGIFY(x)  #x
+#define GETPROCADDR(handle,type,func,param) \
+  typedef type (*func##_t) param; \
+  func##_t func = (func##_t) dlsym(handle, STRINGIFY(func));
+
+
+void print_error(const char *message)
+{
+  void *sdl = NULL;
+
+  fprintf(stderr, "error: %s\n", message);
+
+  if ((sdl = dlopen("./bin/libSDL2-2.0.so.0", RTLD_LAZY)) == NULL) {
+    if ((sdl = dlopen("libSDL2-2.0.so.0", RTLD_LAZY)) == NULL) {
+      return;
+    }
+  }
+
+#define DLSYM(type,func,param) \
+  GETPROCADDR(sdl,type,func,param) \
+  if (dlerror()) { \
+    dlclose(sdl); \
+    return; \
+  }
+
+  DLSYM(int, SDL_Init, (uint32_t))
+  DLSYM(int, SDL_ShowSimpleMessageBox, (uint32_t, const char *, const char *, void *))
+  DLSYM(void, SDL_Quit, (void))
+
+#undef DLSYM
+
+  if (SDL_Init(32) == 0) {
+    SDL_ShowSimpleMessageBox(16, "Error", message, NULL);
+    SDL_Quit();
+  }
+
+  dlclose(sdl);
+}
+
 
 int main(int argc, char **argv)
 {
   char *argv_copy[argc], *self, *copy, *dir, *error;
-  const char *lib, *dest;
   void *handle = NULL;
   int rv = 1;
-
-  bool (*pSteamAPI_IsSteamRunning) (void);
-  int (*pLauncherMain) (int, char**);
 
 
   /* change the current working directory to the exe's path */
 
-  self = realpath("/proc/self/exe", NULL);
-
-  if (!self) {
-    fprintf(stderr, "error: realpath() failed; unable to resolve /proc/self/exe\n");
+  if ((self = realpath("/proc/self/exe", NULL)) == NULL) {
+    print_error("realpath() failed: unable to resolve /proc/self/exe\nAre you using an ancient Linux system?");
     return 1;
   }
 
@@ -40,73 +69,71 @@ int main(int argc, char **argv)
   dir = dirname(copy);
 
   if (chdir(dir) != 0) {
-    fprintf(stderr, "error: chdir() failed; unable to move into the directory `%s'\n", dir);
+    const char *format = "chdir() failed: unable to move into the directory `%s'";
+    error = malloc(strlen(format) - 1 + strlen(dir));
+    sprintf(error, format, dir);
+    print_error(error);
+    free(error);
     free(copy);
     goto close;
   }
   free(copy);
 
 
+
   /* rename bin/libstdc++.so.6 to only use the system C++ library */
 
-  lib = "bin/libstdc++.so.6";
-  dest = "bin/libstdc++.so.6.old";
+  const char *lib = "bin/libstdc++.so.6";
 
   if (access(lib, F_OK) == 0) {
+    const char *dest = "bin/libstdc++.so.6.old";
     printf("renaming `%s' to `%s'\n", lib, dest);
     if (rename(lib, dest) == -1) {
-      int errsv = errno;
-      fprintf(stderr, "error: moving `%s' failed: %s\n", lib, strerror(errsv));
-      //goto close;
+      error = strerror(errno);
+      fprintf(stderr, "warning: moving `%s' failed: %s\n", lib, error);
     }
   }
+
 
 
   /* check for running Steam instance; starting the game without Steam
    * running will result in a segmentation fault */
 
-  handle = dlopen("./bin/libsteam_api.so", RTLD_LAZY);
-
-  if (!handle) {
-    fprintf(stderr, "error: %s\n", dlerror());
+  if ((handle = dlopen("./bin/libsteam_api.so", RTLD_LAZY)) == NULL) {
+    print_error("cannot open ./bin/libsteam_api.so");
     goto close;
+  }
+
+#define DLSYM(type,func,param) \
+  GETPROCADDR(handle,type,func,param) \
+  if ((error = dlerror()) != NULL) { \
+    print_error(error); \
+    goto close; \
   }
 
   dlerror();
-  *(void **) (&pSteamAPI_IsSteamRunning) = dlsym(handle, "SteamAPI_IsSteamRunning");
-  error = dlerror();
+  DLSYM(char, SteamAPI_IsSteamRunning, (void))
 
-  if (error) {
-    fprintf(stderr, "error: %s\n", error);
-    goto close;
-  }
-
-  if (pSteamAPI_IsSteamRunning() == false) {
-    fprintf(stderr, "error: SteamAPI_IsSteamRunning() failed; unable to locate a running instance of Steam\n");
+  if (SteamAPI_IsSteamRunning() == 0) {
+    print_error("unable to locate a running instance of Steam");
     goto close;
   }
 
   dlclose(handle);
 
 
+
   /* dlopen() the launcher */
 
-  handle = dlopen("./bin/launcher.so", RTLD_LAZY);
-
-  if (!handle) {
-    fprintf(stderr, "error: %s\n", dlerror());
+  if ((handle = dlopen("./bin/launcher.so", RTLD_LAZY)) == NULL) {
+    print_error("cannot open ./bin/launcher.so");
     goto close;
   }
 
   dlerror();
-  *(void **) (&pLauncherMain) = dlsym(handle, "LauncherMain");
-  error = dlerror();
-
-  if (error) {
-    fprintf(stderr, "error: %s\n", error);
-    goto close;
-  }
+  DLSYM(int, LauncherMain, (int, char**))
   printf("launcher.so successfully loaded\n");
+
 
 
   /* launch game with argv[0] set to the resolved exe path;
@@ -119,7 +146,8 @@ int main(int argc, char **argv)
   argv_copy[0] = self;
   argv_copy[argc] = '\0';
 
-  rv = pLauncherMain(argc, argv_copy);
+  rv = LauncherMain(argc, argv_copy);
+
 
 close:
   if (handle) {
