@@ -1,9 +1,0 @@
- <office:body>
-  <office:text text:use-soft-page-breaks="true">
-   <office:forms form:automatic-focus="false" form:apply-design-mode="false"/>
-   <text:sequence-decls>
-    <text:sequence-decl text:display-outline-level="0" text:name="Illustration"/>
-    <text:sequence-decl text:display-outline-level="0" text:name="Table"/>
-    <text:sequence-decl text:display-outline-level="0" text:name="Text"/>
-    <text:sequence-decl text:display-outline-level="0" text:name="Drawing"/>
-   </text:sequence-decls>
