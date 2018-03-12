@@ -23,10 +23,10 @@ void print_error(const char *message)
 
   fprintf(stderr, "error: %s\n", message);
 
-  if ((sdl = dlopen("./bin/libSDL2-2.0.so.0", RTLD_LAZY)) == NULL) {
-    if ((sdl = dlopen("libSDL2-2.0.so.0", RTLD_LAZY)) == NULL) {
-      return;
-    }
+  if ((sdl = dlopen("./bin/libSDL2-2.0.so.0", RTLD_LAZY)) == NULL ||
+      (sdl = dlopen("libSDL2-2.0.so.0", RTLD_LAZY)) == NULL)
+  {
+    return;
   }
 
 #define DLSYM(type,func,param) \
