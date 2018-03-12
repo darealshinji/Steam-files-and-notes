@@ -57,7 +57,7 @@ void print_error(const char *message)
 
 int main(int argc, char **argv)
 {
-  char *argv_copy[argc], *self, *copy, *dir, *error;
+  char *argv_copy[argc + 2], *self, *copy, *dir, *error;
   void *handle = NULL;
   int rv = 1;
 
@@ -119,8 +119,22 @@ int main(int argc, char **argv)
   DLSYM(bool, SteamAPI_IsSteamRunning, (void))
 
   if (SteamAPI_IsSteamRunning() == false) {
-    print_error("unable to locate a running instance of Steam");
-    goto close;
+    argv_copy[0] = argv[0];
+    argv_copy[1] = "-applaunch";
+    argv_copy[2] = "362890";  /* Black Mesa AppID */
+    for (int i = 1; i < argc; i++) {
+      argv_copy[i + 2] = argv[i];
+    }
+    argv_copy[argc + 2] = '\0';
+
+    execvp("steam", argv_copy);
+    print_error("unable to launch Steam");
+
+    dlclose(handle);
+    if (self) {
+      free(self);
+    }
+    _exit(127);
   }
 
   dlclose(handle);
@@ -148,7 +162,7 @@ int main(int argc, char **argv)
     argv_copy[i] = argv[i];
   }
   argv_copy[0] = self;
-  argv_copy[argc] = '\0';
+  argv_copy[argc] = argv_copy[argc + 1] = argv_copy[argc + 2] = '\0';
 
   rv = LauncherMain(argc, argv_copy);
 
