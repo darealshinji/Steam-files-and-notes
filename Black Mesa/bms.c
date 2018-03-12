@@ -11,6 +11,10 @@
 #include <string.h>
 #include <unistd.h>
 
+typedef char bool;
+#define true 1
+#define false 0
+
 #define STRINGIFY(x)  #x
 #define GETPROCADDR(handle,type,func,param) \
   typedef type (*func##_t) param; \
@@ -112,9 +116,9 @@ int main(int argc, char **argv)
   }
 
   dlerror();
-  DLSYM(char, SteamAPI_IsSteamRunning, (void))
+  DLSYM(bool, SteamAPI_IsSteamRunning, (void))
 
-  if (SteamAPI_IsSteamRunning() == 0) {
+  if (SteamAPI_IsSteamRunning() == false) {
     print_error("unable to locate a running instance of Steam");
     goto close;
   }
