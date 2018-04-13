@@ -99,7 +99,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
   _putenv(path.c_str());
 
 
-  /* check for a running instance of Steam */
+  /* check for a running instance of Steam
+   * and try to launch Steam if needed */
 
   dll = dirname + "\\bin\\steam_api.dll";
   hinstLauncher = LoadLibraryEx(dll.c_str(), NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
@@ -124,9 +125,6 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
   }
 
   pSteamAPI_IsSteamRunning = (SteamAPI_IsSteamRunning_t) GetProcAddress(hinstLauncher, "SteamAPI_IsSteamRunning");
-
-
-  /* try to launch Steam if needed */
 
   if (!pSteamAPI_IsSteamRunning()) {
     STARTUPINFO si;
@@ -169,15 +167,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
       MessageBox(0, errmsg, title, type);
       return 1;
     }
-  }
 
-  if (hinstLauncher) {
-    FreeLibrary(hinstLauncher);
+    return 0;
   }
 
 
   /* load launcher.dll */
 
+  FreeLibrary(hinstLauncher);
   dll = dirname + "\\bin\\launcher.dll";
   hinstLauncher = LoadLibraryEx(dll.c_str(), NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
 
