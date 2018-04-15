@@ -1,0 +1,11 @@
+--- a/pre_menu.cfg
++++ b/pre_menu.cfg
+@@ -1,6 +1,6 @@
+ <PreMenu skin="gui_main_menu.skin">
+-	<Section Image="startup_fg_logo.jpg" Time="2" ShowFirstStartOnly="false"/>
+-	<Section Image="startup_tcr_logo.jpg" Time="2" ShowFirstStartOnly="false"/>
++	<Section Image="startup_fg_logo.jpg" Time="2" ShowFirstStartOnly="true"/>
++	<Section Image="startup_tcr_logo.jpg" Time="2" ShowFirstStartOnly="true"/>
+ 	<Section Image="welcome_bg05.jpg" ShowFirstStartOnly="true" HasGammaSettings="true"  Music="12_amb.ogg" MusicVolume="0.5" MusicFadeTime="10">
+ 		<Text Pos="80 100 0" FrameSize="640 300" FontSize="18 18" TextCat="PreMenu" TextEntry="WelcomeMessage05" Color="1 1 1 1" Align="Left" />
+ 	</Section>

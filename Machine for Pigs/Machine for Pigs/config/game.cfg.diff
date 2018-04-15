@@ -1,0 +1,11 @@
+--- a/game.cfg
++++ b/game.cfg
+@@ -117,7 +117,7 @@
+ 
+ <Player_General
+ 
+-	FOV = "70"
++	FOV = "80"
+ 	FarClipPlane = "1000"
+ 	NearClipPlane = "0.01"
+ 
