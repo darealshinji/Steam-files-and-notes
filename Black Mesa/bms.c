@@ -27,8 +27,8 @@ void print_error(const char *message)
 
   fprintf(stderr, "error: %s\n", message);
 
-  if ((sdl = dlopen("./bin/libSDL2-2.0.so.0", RTLD_LAZY)) == NULL ||
-      (sdl = dlopen("libSDL2-2.0.so.0", RTLD_LAZY)) == NULL)
+  if ((sdl = dlopen("libSDL2-2.0.so.0", RTLD_LAZY)) == NULL ||
+      (sdl = dlopen("./bin/libSDL2-2.0.so.0", RTLD_LAZY)) == NULL)
   {
     return;
   }
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
 
 
   /* rename bin/libstdc++.so.6 to only use the system C++ library */
-
+/*
   const char *lib = "bin/libstdc++.so.6";
 
   if (access(lib, F_OK) == 0) {
@@ -97,6 +97,7 @@ int main(int argc, char **argv)
       fprintf(stderr, "warning: moving `%s' failed: %s\n", lib, error);
     }
   }
+*/
 
 
 
