@@ -27,9 +27,7 @@ void print_error(const char *message)
 
   fprintf(stderr, "error: %s\n", message);
 
-  if ((sdl = dlopen("libSDL2-2.0.so.0", RTLD_LAZY)) == NULL ||
-      (sdl = dlopen("./bin/libSDL2-2.0.so.0", RTLD_LAZY)) == NULL)
-  {
+  if ((sdl = dlopen("libSDL2-2.0.so.0", RTLD_LAZY)) == NULL) {
     return;
   }
 
@@ -85,19 +83,8 @@ int main(int argc, char **argv)
 
 
 
-  /* rename bin/libstdc++.so.6 to only use the system C++ library */
-/*
-  const char *lib = "bin/libstdc++.so.6";
-
-  if (access(lib, F_OK) == 0) {
-    const char *dest = "bin/libstdc++.so.6.old";
-    printf("renaming `%s' to `%s'\n", lib, dest);
-    if (rename(lib, dest) == -1) {
-      error = strerror(errno);
-      fprintf(stderr, "warning: moving `%s' failed: %s\n", lib, error);
-    }
-  }
-*/
+  /* remove bin/libstdc++.so.6 if it still exists */
+  unlink("bin/libstdc++.so.6");
 
 
 
