@@ -47,7 +47,13 @@ make PBUILDER=0
 
 libgcrypt.so.11
 ---------------
-Add libgcrypt.so.11 to the _bin_ directory of Source/Goldsource engine games to play with Steam Runtime disabled.
+Add `libgcrypt.so.11` to the _bin_ directory of Source/Goldsource engine games to play with Steam Runtime disabled.
+
+libsteam_api.so
+---------------
+In rare cases a game might be missing libsteam_api.so.
+Note that the correct soname of `libsteam_api64.so` is `libsteam_api.so`.
+libCSteamworks binaries can be downloaded at https://github.com/rlabrecque/CSteamworks/releases
 
 registry.vdf
 ------------
