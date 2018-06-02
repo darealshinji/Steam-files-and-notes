@@ -33,3 +33,10 @@ convert header.jpg SHMCD_Data/ScreenSelector.png
 # start the game
 ./SHMCD.x86_64 -show-screen-selector
 ```
+
+Since version 5.0.0 the game uses Unity 2017.3.1p4:
+``` sh
+https://beta.unity3d.com/download/7f25373c3e03/TargetSupportInstaller/UnitySetup-Linux-Support-for-Editor-2017.3.1p4.exe
+```
+It also needs the libsteam_api libraries to be present in the directories `SHMCD_Data/Mono/x86[_64]`
+

@@ -13,4 +13,6 @@ to patch `steam_api.dll` (make sure to keep a backup of the original file).
 Linux
 -----
 
-Currently Steam tries to run the game by launching `hl2_linux` which will fail because the libraries won't be in the search path. Instead use the following launch options: `./hl2.sh #%command%`
+Currently Steam tries to run the game by launching `hl2_linux` which will fail because the
+libraries won't be in the search path.
+Instead use the following launch options: `./hl2.sh #%command%`
