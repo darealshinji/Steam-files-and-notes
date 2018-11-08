@@ -18,3 +18,9 @@ https://github.com/crosire/d3d8to9/releases
 * Looping sound issues:
 delete or rename `audio\PC\SCRIPTED\CRAPPER\CRAPPER.RIB` and `audio\PC\SCRIPTED\PORN\PORN.RIB`
 
+Re-linking `manhunt.exe` can also be done manually with the Microsoft linker:
+```
+rename manhunt.exe manhunt.exe.old
+rename testapp.exe manhunt.exe
+link.exe -edit -nxcompat:no -dynamicbase:no manhunt.exe
+```
