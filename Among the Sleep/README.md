@@ -25,9 +25,6 @@ mv /tmp/sharedassets1.resource_001.orig sharedassets1.resource
 Linux
 -----
 
-To launch the 64 bit version of the game, set the following launch options: `"./Among The Sleep.x86_64" #%command%`
-
-If you already have some profile data and want to keep it, you will have to copy it for the 64 bit game.
-Launch the 64 bit game once and close it. Then copy `profile.json` from `~/.config/unity3d/Krillbite Studio/Among The Sleep/Default/`
-into `~/.config/unity3d/Krillbite Studio/Among The Sleep/<SOME_ID_HERE>/`, replacing the existing file.
+Steam always starts the 32 bit game version.
+There is a 64 bit game binary, but it seems to have some bugs that don't appear on the 32 bit version.
 
