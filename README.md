@@ -36,19 +36,6 @@ export DBUS_FATAL_WARNINGS=0
 export STEAM_FRAME_FORCE_CLOSE=0
 ```
 
-Native Runtime
---------------
-On Debian/Ubuntu you can build a package with a "native runtime launcher" like this:
-``` sh
-git clone https://github.com/darealshinji/debian-packaging
-cd debian-packaging/games/steam-native
-make PBUILDER=0
-```
-
-libgcrypt.so.11
----------------
-Add `libgcrypt.so.11` to the _bin_ directory of Source/Goldsource engine games to play with Steam Runtime disabled.
-
 libsteam_api.so
 ---------------
 In rare cases a game might be missing libsteam_api.so.
