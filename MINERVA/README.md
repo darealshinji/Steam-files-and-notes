@@ -14,7 +14,6 @@ steamcmd +login USERNAME PASSWORD +force_install_dir $HOME/MINERVA +app_update 2
 steamcmd +login USERNAME PASSWORD +@sSteamCmdForcePlatformType windows +force_install_dir $HOME/MINERVA/MINERVA +app_license_request 235780 +app_update 235780 validate +quit
 
 cp -rf metastasis -t $HOME/MINERVA/MINERVA
-cp ../libgcrypt.so.11 $HOME/MINERVA/bin
 cd $HOME/MINERVA
 mv MINERVA/metastasis .
 mv sourcetest/bin ep2

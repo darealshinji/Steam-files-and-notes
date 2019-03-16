@@ -3,63 +3,53 @@
 
 #include <dlfcn.h>
 #include <libgen.h>
-#include <limits.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 
-#define PRINT_ERROR(msg) fprintf(stderr, "error: %s\n", msg)
+typedef int (*LauncherMain_t)(int, char**);
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-  char buf[PATH_MAX + 1] = {0};
-  ssize_t ssize;
-  void *handle;
-  char *error;
-  int rv, rv_dlclose;
-  int (*pLauncherMain) (int, char**);
+  char *self, *dn, *error;
+  void *hinstLauncher;
+  LauncherMain_t pLauncherMain;
+  int resultLauncherMain;
 
-  ssize = readlink("/proc/self/exe", buf, PATH_MAX);
-
-  if (ssize < 1)
-  {
-    PRINT_ERROR("readlink()");
+  if ((self = realpath("/proc/self/exe", NULL)) == NULL) {
+    perror("realpath()");
     return 1;
   }
 
-  if (chdir(dirname(buf)) != 0)
-  {
-    PRINT_ERROR("chdir()");
+  dn = dirname(self);
+  free(self);
+
+  if (chdir(dn) != 0) {
+    perror("chdir()");
     return 1;
   }
 
-  handle = dlopen("./bin/launcher.so", RTLD_LAZY);
-
-  if (!handle)
-  {
-    PRINT_ERROR(dlerror());
+  if ((hinstLauncher = dlopen("./bin/launcher.so", RTLD_LAZY)) == NULL) {
+    fprintf(stderr, "error: %s\n", dlerror());
     return 1;
   }
 
   dlerror();
-  *(void **) (&pLauncherMain) = dlsym(handle, "LauncherMain");
-  error = dlerror();
+  pLauncherMain = dlsym(hinstLauncher, "LauncherMain");
 
-  if (error)
-  {
-    PRINT_ERROR(error);
-    dlclose(handle);
+  if ((error = dlerror()) != NULL) {
+    fprintf(stderr, "error: %s\n", error);
+    dlclose(hinstLauncher);
     return 1;
   }
 
-  rv = (*pLauncherMain)(argc, argv);
-  rv_dlclose = dlclose(handle);
+  resultLauncherMain = pLauncherMain(argc, argv);
 
-  if (rv_dlclose != 0)
-  {
-    PRINT_ERROR(dlerror());
-    rv = rv_dlclose;
+  if (dlclose(hinstLauncher) != 0) {
+    fprintf(stderr, "error: %s\n", dlerror());
+    return 1;
   }
 
-  return rv;
+  return resultLauncherMain;
 }
 
