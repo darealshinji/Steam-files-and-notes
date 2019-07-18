@@ -45,7 +45,11 @@ libCSteamworks binaries can be downloaded at https://github.com/rlabrecque/CStea
 registry.vdf
 ------------
 If auto-login doesn't work on Linux, set correct username, language and sourcemod path in `registry.vdf`,
-replace the original file in `~/.steam/` and mark the file as read-only.
+replace the original file in `~/.steam/` and mark the file and directory as read-only:
+``` sh
+chmod 444 ~/.steam/registry.vdf
+chmod 544 ~/.steam
+```
 
 Windows
 =======
