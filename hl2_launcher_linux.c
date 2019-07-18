@@ -16,18 +16,28 @@ int main(int argc, char *argv[])
   LauncherMain_t pLauncherMain;
   int resultLauncherMain;
 
+  // get full executable path
   if ((self = realpath("/proc/self/exe", NULL)) == NULL) {
     perror("realpath()");
     return 1;
   }
 
-  dn = dirname(self);
-  free(self);
-
-  if (chdir(dn) != 0) {
-    perror("chdir()");
+  // get directory name
+  if ((dn = dirname(self)) == NULL) {
+    fprintf(stderr, "error: dirname() returned NULL\n");
+    free(self);
     return 1;
   }
+
+  // change directory
+  if (chdir(dn) != 0) {
+    perror("chdir()");
+    free(self);
+    return 1;
+  }
+ 
+  dn = NULL;
+  free(self);
 
   if ((hinstLauncher = dlopen("./bin/launcher.so", RTLD_LAZY)) == NULL) {
     fprintf(stderr, "error: %s\n", dlerror());
