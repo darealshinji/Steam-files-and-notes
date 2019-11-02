@@ -1,6 +1,6 @@
 AppID: `92`
 
-Codename Gordon can still be installed for free using the Steam URL `steam://install/92` or `steamcmd`.
+Codename Gordon can still be installed for free using the Steam URL `steam://install/92`, `steamcmd` or with the command line option `-applaunch 92`.
 
 Linux
 -----
