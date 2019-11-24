@@ -2,23 +2,26 @@ A collection of notes, configurations and other files for my Steam games.
 
 Linux
 =====
-You can download the Windows version of a game on Linux using steamcmd (install it using your package manager):
-``` sh
-steamcmd +login USERNAME [PASSWORD] +@sSteamCmdForcePlatformType windows +force_install_dir DESTINATION +app_license_request APPID +app_update APPID validate +quit
-```
-You can omit the `+app_license_request APPID` for a game that you already own.
-Use `+@sSteamCmdForcePlatformType macos` to download the macOS version of a game.
 
- * USERNAME PASSWORD: your username and password (password needs to be added only once)
- * DESTINATION: full destination path without spaces in names, i.e. `$HOME/Half-Life_2_(Windows)`
- * APPID: the AppID of the game, i.e. 220 for Half-Life²
+auto login issues
+-----------------
+If auto-login doesn't work on Linux, delete or rename all directories or symlinks in your home directory
+that contain the name `steam` (case-insensitive). If you have changed the access rights of `~/.steam` you
+can delete this directory. Normally it contains basically only symbolic links and should be recreated
+on the next launch of Steam.
+
+libsteam_api.so
+---------------
+In rare cases a game might be missing libsteam_api.so.
+Note that the correct soname of `libsteam_api64.so` is `libsteam_api.so`.
+libCSteamworks binaries can be downloaded at https://github.com/rlabrecque/CSteamworks/releases
 
 Steam or one of the games won't start
 -------------------------------------
 Some of libraries from the Steam Runtime can cause imcompatibility issues, resulting in a game or even the Steam client not starting.
 Run the following command to find and delete those libraries:
 ``` sh
-find ~/.steam/root/ \( -name "libgcc_s.so*" -o -name "libstdc++.so*" -o -name "libxcb.so*" -o -name "libgpg-error.so*" \) -print -delete
+find ~/.steam/ \( -name "libgcc_s.so*" -o -name "libstdc++.so*" -o -name "libxcb.so*" -o -name "libgpg-error.so*" \) -print -delete
 ```
 
 Useful environment variables
@@ -36,20 +39,6 @@ export DBUS_FATAL_WARNINGS=0
 export STEAM_FRAME_FORCE_CLOSE=0
 ```
 
-libsteam_api.so
----------------
-In rare cases a game might be missing libsteam_api.so.
-Note that the correct soname of `libsteam_api64.so` is `libsteam_api.so`.
-libCSteamworks binaries can be downloaded at https://github.com/rlabrecque/CSteamworks/releases
-
-registry.vdf
-------------
-If auto-login doesn't work on Linux, set correct username, language and sourcemod path in `registry.vdf`,
-replace the original file in `~/.steam/` and mark the file and directory as read-only:
-``` sh
-chmod 444 ~/.steam/registry.vdf
-chmod 544 ~/.steam
-```
 
 Windows
 =======
