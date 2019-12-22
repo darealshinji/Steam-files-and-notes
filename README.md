@@ -1,5 +1,12 @@
 A collection of notes, configurations and other files for my Steam games.
 
+
+hidden_steam_games.txt
+----------------------
+A list of free games that won't be listed in the Steam shop but can still be downloaded
+using their Steam URLs.
+
+
 Linux
 =====
 
