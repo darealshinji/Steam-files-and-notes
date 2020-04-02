@@ -38,6 +38,7 @@ steam://install/798540     Original Soundtrack
 
 Weapons:
 ```
+steam://install/1272090    Unturned Weapon Pack
 steam://install/1174581    Left 4 Dead 2 Weapon Pack
 steam://install/1184351    Chivalry Weapon Pack
 steam://install/302102     Punk Queen Weapon Pack
