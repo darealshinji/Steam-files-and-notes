@@ -10,6 +10,7 @@ Bullet Run steam://install/211880
 Codename Gordon (Half-Life² teaser) steam://install/92
 District 187 steam://install/221080
 Dungeon Fighter Online steam://install/212220
+Electric Highways steam://install/412140
 F.E.A.R. Online (servers are offline) steam://install/223650
 FNaF World steam://install/427920
 Haunted Memories steam://install/241640
