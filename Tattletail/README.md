@@ -10,7 +10,7 @@ First download the macOS version (the Windows version won't work):
 ``` sh
 steamcmd +login USERNAME +@sSteamCmdForcePlatformType macos +force_install_dir $HOME/Tattletail-tmp +app_update 568090 validate +quit
 ```
-Replace `USERNAME` with your __Steam__ account name and password.
+Replace `USERNAME` with your __Steam__ account name.
 The installation directory (`$HOME/Tattletail-tmp` in this case) has to be an absolute path and mustn't contain any spaces!
 
 Move to the new directory and create a Linux version from the game files:
