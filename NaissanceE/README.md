@@ -24,4 +24,5 @@ for example `fov 100`.
 NaissanceE/UDKGame/Config/UDKNE_Safeguard.ini
 ---------------------------------------------
 
-This file contains the the default player profile with all the game's checkpoints.
+This file contains the default player profile with all the game's checkpoints.
+
