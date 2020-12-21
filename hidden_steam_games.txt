@@ -1,4 +1,4 @@
-List taken from https://steamcommunity.com/sharedfiles/filedetails/?id=1343681691
+List based on https://steamcommunity.com/sharedfiles/filedetails/?id=1343681691
 
 Age of Empires Online (servers are offline) steam://install/105430
 Arcane Saga Online steam://install/238110
@@ -13,6 +13,7 @@ Dungeon Fighter Online steam://install/212220
 Electric Highways steam://install/412140
 F.E.A.R. Online (servers are offline) steam://install/223650
 FNaF World steam://install/427920
+Half-Life: Absolute Zero (only de-listed) steam://install/812440
 Haunted Memories steam://install/241640
 Maple Story (US version) steam://install/216150
 Pandora Saga steam://install/106010
@@ -23,5 +24,3 @@ TERA steam://install/389300
 TERA (European version) steam://install/323370
 Vanguard: Saga of Heroes F2P steam://install/218210
 Wizardry Online steam://install/221360
-
-
