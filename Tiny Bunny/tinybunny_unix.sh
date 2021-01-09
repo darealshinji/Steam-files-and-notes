@@ -2,10 +2,19 @@
 set -e
 set -x
 
+gamedir="Tiny Bunny"
 sdkver="7.3.5"
 
-mkdir -p "Tiny Bunny/lib"
-cd "Tiny Bunny"
+if [ "$(printf "$PWD" | tail -c28)" = "/steamapps/common/Tiny Bunny" ]; then
+  gamedir="."
+fi
+
+if [ -f "$gamedir/game/script_version.txt" ]; then
+  sdkver=$(sed 's|,|.|'g "$gamedir/game/script_version.txt" | tr -d -c '0-9.')
+fi
+
+mkdir -p "$gamedir/lib"
+cd "$gamedir"
 
 #wget https://www.renpy.org/dl/$sdkver/renpy-${sdkver}-sdk.tar.bz2
 wget https://archive.org/download/renpy-${sdkver}-sdk/renpy-${sdkver}-sdk.tar.bz2
@@ -30,5 +39,3 @@ wget -O lib/darwin-x86_64/libsteam_api.dylib https://github.com/darealshinji/Ste
 # delete
 rm renpy-${sdkver}-sdk.tar.bz2
 rm -rf renpy-${sdkver}-sdk
-
-
