@@ -10,12 +10,10 @@ cgdir="/tmp/cg"
 ffdec="java -jar ffdec.jar"
 
 read -p "Steam username: " username
-read -s -p "Steam password: " password
-echo ""
-echo "steamcmd +login $username \$password +@sSteamCmdForcePlatformType windows +force_install_dir $cgdir +app_license_request 92 +app_update 92 validate +quit"
+echo "steamcmd +login $username +@sSteamCmdForcePlatformType windows +force_install_dir $cgdir +app_license_request 92 +app_update 92 validate +quit"
 
 rm -rf $cgdir
-steamcmd +login $username $password +@sSteamCmdForcePlatformType windows +force_install_dir $cgdir +app_license_request 92 +app_update 92 validate +quit
+steamcmd +login $username +@sSteamCmdForcePlatformType windows +force_install_dir $cgdir +app_license_request 92 +app_update 92 validate +quit
 
 set -x
 
