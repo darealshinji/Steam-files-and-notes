@@ -1,12 +1,5 @@
 AppID: `391720`
 
-Dying Light: Bad Blood
-----------------------
-
-If you register an account at https://dockets.dyinglightgame.com and link it with
-your Steam account, you can claim a free copy of the game _Dying Light: Bad Blood_.
-
-
 Free Dying Light DLCs
 ---------------------
 
