@@ -61,5 +61,7 @@ steam://install/325717     Techland Outfit
 steam://install/325720     Alienware Outfit
 steam://install/325721     Nvidia Outfit
 steam://install/325722     Razer Outfit
+steam://install/1454750    L4D2 Bill & Gnome Chompski Pack
+steam://install/1524890    Ox Warrior Bundle
 ```
 
