@@ -1,5 +1,7 @@
 AppID: `391720`
 
+Add `-nologos` to the launch options to skip the intro videos on startup.
+
 Free Dying Light DLCs
 ---------------------
 
