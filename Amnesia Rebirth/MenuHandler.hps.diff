@@ -1,0 +1,61 @@
+https://steamcommunity.com/sharedfiles/filedetails/?id=2278666872
+made by https://steamcommunity.com/id/crater_
+
+--- a/Amnesia Rebirth/script/custom/modules/MenuHandler.hps
++++ b/Amnesia Rebirth/script/custom/modules/MenuHandler.hps
+@@ -8388,6 +8388,22 @@
+ 			else
+ 				fMul = 0.6f;
+ 		}
++		
++		
++		////////////
++		// Skip Logo - Wait for keypress
++		tString sKeyPressed = cLux_GetInputHandler().GetLatestKeyPressed();
++		
++		// Only allow skip during logo phases
++		if(mPreMenuPhase==ePreMenuPhase_FrictionalLogo || mPreMenuPhase==ePreMenuPhase_FmodLogo)
++		{
++			if(sKeyPressed.length() > 0)
++			{
++				ImGui_StopTimer("FGLogoOver");
++				ImGui_StopTimer("FModLogoOver");
++				mfPreMenuFadeDest = mfPreMenuFadeDestMin;
++			}
++		}
+ 
+ 		mfPreMenuFadeAmount	= cMath_IncreaseTo(mfPreMenuFadeAmount, afTimeStep*fMul, mfPreMenuFadeDest);
+ 		
+@@ -8434,9 +8450,17 @@
+ 			if(mPreMenuPhase==ePreMenuPhase_FrictionalLogo)
+ 			{
+ 				cLux_AddDebugMessage("[PRE-MENU] LOGO");
+-				ImGui_AddTimer("FGLogoOver", 3.2f);
+-				mbMouseVisible = true;
+-				Sound_PlayGui("special_fx/frontend/FG_Menu_Sting", 1.0f, eSoundEntryType_Gui);
++				if(mpConfig.GetBool("Game", "SkipLogo", false))
++				{
++					mbMouseVisible = true;
++					mPreMenuPhase = ePreMenuPhase_Gamma;
++				}
++				else
++				{
++					ImGui_AddTimer("FGLogoOver", 3.2f);
++					mbMouseVisible = true;
++					Sound_PlayGui("special_fx/frontend/FG_Menu_Sting", 1.0f, eSoundEntryType_Gui);
++				}
+ 				/*
+ 				if(mbShowPressX)
+ 				{
+@@ -8517,6 +8541,11 @@
+ 				
+ 				cLux_AddDebugMessage("[PRE-MENU] DONE ");
+ 				
++				if(Sound_GuiIsPlaying("special_fx/frontend/FG_Menu_Sting"))
++				{
++					Sound_StopGui("special_fx/frontend/FG_Menu_Sting", 1.0f);
++				}
++				
+ 				if (mbFirstGameStart == false && mbPremenuActive == true && ImGui_TimerExists("TransitionIn") == false)
+ 				{
+ 					cLux_AddDebugMessage("I AM CREATING THIS FADE");
