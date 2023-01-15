@@ -10,13 +10,6 @@ using their Steam URLs.
 Linux
 =====
 
-auto login issues
------------------
-If auto-login doesn't work on Linux, delete or rename all directories or symlinks in your home directory
-that contain the name `steam` (case-insensitive). If you have changed the access rights of `~/.steam` you
-can delete this directory. Normally it contains basically only symbolic links and should be recreated
-on the next launch of Steam.
-
 libsteam_api.so
 ---------------
 In rare cases a game might be missing libsteam_api.so.
